@@ -1,0 +1,19 @@
+{
+  "name": "freesound",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "6.0.0",
+    "micro": "9.3.2",
+    "micro-query": "0.3.0",
+    "request": "2.87.0",
+    "request-promise": "4.2.2"
+  }
+}
