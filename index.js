@@ -2,13 +2,23 @@ const request = require('request-promise')
 const { json } = require('micro')
 const parseQuery = require('micro-query')
 const querystring = require('querystring')
+const mCors = require('micro-cors')
 require('dotenv').config()
 
 const TAGS = 'id,name,duration,previews,url,tags'
 const PAGE_SIZE = 50
 
+const ORIGINS = [
+  process.env.ALLOW_LOCALHOST ? '*' : '*.rolodromo.com'
+]
 
-module.exports = async (req, res, end) => {
+const cors = mCors({
+  allowMethods: ['GET', 'OPTIONS'],
+  allowOrigins: ORIGINS.join(', ')
+})
+
+
+module.exports = cors(async (req, res, end) => {
   try {
     const { query, maxDuration, sort } = await parseQuery(req)
 
@@ -38,4 +48,4 @@ module.exports = async (req, res, end) => {
   } catch(err) {
     return err
   }
-}
+})
